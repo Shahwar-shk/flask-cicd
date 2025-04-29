@@ -1,9 +1,15 @@
 # tests/test_app.py
-from app import app
+import unittest
+from app import app  # Importing 'app' from app.py
 
-def test_home():
-    # Test the main home route
-    with app.test_client() as client:
-        response = client.get('/')
-        assert response.status_code == 200  # Ensure it returns a 200 OK status
-        assert b'Hello from Flask!' in response.data  # Check if the correct text is returned
+class TestFlaskApp(unittest.TestCase):
+
+    def test_home(self):
+        # Test the home route
+        with app.test_client() as client:
+            response = client.get('/')
+            self.assertEqual(response.status_code, 200)  # Ensure status is 200
+            self.assertIn(b'Hello from Flask!', response.data)  # Check text in response
+
+if __name__ == '__main__':
+    unittest.main()
