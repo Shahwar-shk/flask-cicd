@@ -1,18 +1,18 @@
-# Use the official Python image
-FROM python:3.10-slim
+# Use Python 3.9 as base image
+FROM python:3.9-slim
 
-# Set the working directory
+# Set working directory inside the container
 WORKDIR /app
 
-# Copy requirements and install
-COPY requirements.txt requirements.txt
-RUN pip install -r requirements.txt
+# Copy the requirements.txt and install dependencies
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
 
-# Copy the rest of the code
+# Copy the rest of your Flask app
 COPY . .
 
-# Expose port 5000
+# Expose port 5000 for Flask
 EXPOSE 5000
 
-# Run the app using gunicorn
-CMD ["gunicorn", "-b", "0.0.0.0:5000", "app:app"]
+# Use gunicorn to run the app in production
+CMD ["gunicorn", "app:app", "--bind", "0.0.0.0:5000"]
