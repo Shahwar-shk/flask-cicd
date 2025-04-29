@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block title %}Contact{% endblock %}
+{% block content %}
+    <h2>Contact Us</h2>
+    <form method="POST">
+        <label>Name:</label><br>
+        <input type="text" name="name"><br><br>
+        <label>Message:</label><br>
+        <textarea name="message"></textarea><br><br>
+        <button type="submit">Send</button>
+    </form>
+    {% if submitted %}
+        <p>Thank you, {{ name }}! We received your message.</p>
+    {% endif %}
+{% endblock %}
