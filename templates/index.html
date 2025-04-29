@@ -1,13 +1,7 @@
-<!-- templates/index.html -->
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Flask App</title>
-</head>
-<body>
-    <h1>Hello from Flask!</h1>
-    <p>This is a rendered HTML template.</p>
-</body>
-</html>
+{% extends 'base.html' %}
+{% block title %}Home{% endblock %}
+{% block content %}
+    <h2>Welcome!</h2>
+    <p>This is the homepage.</p>
+{% endblock %}
 
